@@ -35,3 +35,5 @@ npm i - refresh local after sync
 CTRL + SHIFT + P => Restart TS Server - troubleshoot ts types
 
 npx prisma studio - look at DB tables, add records
+
+42:33
