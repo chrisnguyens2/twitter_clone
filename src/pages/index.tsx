@@ -6,19 +6,29 @@ import { RouterOutputs, api } from "~/utils/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"
 import { LoadingPage } from "~/components/loading";
+import { useState } from "react";
 
 dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
   const {user} = useUser();
 
-  console.log(user);
+  const [input, setInput] = useState("");
+
+  const ctx = api.useContext();
+
+  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
+    onSuccess: () => {
+      setInput("");
+      void ctx.posts.getAll.invalidate();
+    }
+  });
 
   if (!user) return null;
-  console.log(user);
-  return(
+
+  return (
     <div className="flex w-full gap-3">
-      <Image 
+      <Image
         src={user.imageUrl}
         alt="Profile Image"
         className="h-14 w-14 rounded-full"
@@ -26,7 +36,16 @@ const CreatePostWizard = () => {
         height={56}
       />
 
-      <input placeholder="Type a new post!" className="bg-transparent outline-none grow"/>
+      <input
+        placeholder="Type a new post!"
+        className="grow bg-transparent outline-none"
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        disabled={isPosting}
+      />
+
+      <button onClick={() => mutate({content: input})}>Post</button>
     </div>
   );
 }

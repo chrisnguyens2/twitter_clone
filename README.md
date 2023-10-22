@@ -36,4 +36,5 @@ CTRL + SHIFT + P => Restart TS Server - troubleshoot ts types
 
 npx prisma studio - look at DB tables, add records
 
-42:33
+installed dayjs to format datetime fromNow
+zod for data/form validation
