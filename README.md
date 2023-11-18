@@ -40,3 +40,5 @@ installed dayjs to format datetime fromNow
 zod for data/form validation
 installed upstash for rate limiting. npm install @upstash/ratelimit
 install react-hot-toast for error toasts
+
+consider https://react-hook-form.com/ for client-side input validation (helps prevent re-rendering on every key press)
