@@ -39,3 +39,4 @@ npx prisma studio - look at DB tables, add records
 installed dayjs to format datetime fromNow
 zod for data/form validation
 installed upstash for rate limiting. npm install @upstash/ratelimit
+install react-hot-toast for error toasts
