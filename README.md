@@ -42,3 +42,7 @@ installed upstash for rate limiting. npm install @upstash/ratelimit
 install react-hot-toast for error toasts
 
 consider https://react-hook-form.com/ for client-side input validation (helps prevent re-rendering on every key press)
+
+Routing using folder structure with [id] and [slug] as a parameter to get profile.
+
+1:55:25
