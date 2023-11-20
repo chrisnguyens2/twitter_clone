@@ -45,4 +45,8 @@ consider https://react-hook-form.com/ for client-side input validation (helps pr
 
 Routing using folder structure with [id] and [slug] as a parameter to get profile.
 
+No type definitions, type is inferred from the validators (e.g. post.ts).
+
+Use SSGHelpers for profile page. Pre-hydrate some data ahead of time. https://trpc.io/docs/client/nextjs/server-side-helpers
+
 1:55:25
