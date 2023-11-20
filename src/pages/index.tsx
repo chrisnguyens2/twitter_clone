@@ -1,19 +1,19 @@
 import { SignIn, SignInButton, useUser } from "@clerk/nextjs";
-import Head from "next/head";
 import Image from "next/image";
 import { type RouterOutputs, api } from "~/utils/api";
 
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime"
+import relativeTime from "dayjs/plugin/relativeTime";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { PageLayout } from "~/components/layout";
 
 dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
-  const {user} = useUser();
+  const { user } = useUser();
 
   const [input, setInput] = useState("");
 
@@ -26,12 +26,12 @@ const CreatePostWizard = () => {
     },
     onError: (e) => {
       const errorMessage = e.data?.zodError?.fieldErrors.content;
-      if (!!errorMessage && !!errorMessage[0]){
+      if (!!errorMessage && !!errorMessage[0]) {
         toast.error(errorMessage[0]);
-      } else{
+      } else {
         toast.error("Failed to post! Please try again later.");
       }
-    }
+    },
   });
 
   if (!user) return null;
@@ -74,7 +74,7 @@ const CreatePostWizard = () => {
       )}
     </div>
   );
-}
+};
 
 //easy way to get the query type!
 type PostWithUser = RouterOutputs["posts"]["getAll"][number];
@@ -103,8 +103,8 @@ const PostView = (props: PostWithUser) => {
         <span className="text-lg">{post.content}</span>
       </div>
     </div>
-  ); 
-}
+  );
+};
 
 const Feed = () => {
   const { data, isLoading: postsLoading } = api.posts.getAll.useQuery();
@@ -120,7 +120,7 @@ const Feed = () => {
       ))}
     </div>
   );
-}
+};
 
 export default function Home() {
   const { isLoaded: userLoaded, isSignedIn } = useUser();
@@ -133,26 +133,21 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex justify-center h-screen">
-        <div className="h-full w-full md:max-w-2xl border-x border-slate-400">
-          <div className="flex border-b borderslate-400 p-4">
-            <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
-            {!isSignedIn && (
-              <div className="flex justify-center">
-                <SignInButton mode="modal">
-                  <button className="btn">
-                    Sign in
-                  </button>
-                </SignInButton>
-              </div>)}       
-            {!!isSignedIn && (
-                <CreatePostWizard />
-                )}
-          </div>
-          
-          <Feed />         
+      <PageLayout>
+        <div className="borderslate-400 flex border-b p-4">
+          <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+          {!isSignedIn && (
+            <div className="flex justify-center">
+              <SignInButton mode="modal">
+                <button className="btn">Sign in</button>
+              </SignInButton>
+            </div>
+          )}
+          {!!isSignedIn && <CreatePostWizard />}
         </div>
-      </main>
+
+        <Feed />
+      </PageLayout>
     </>
   );
 }
