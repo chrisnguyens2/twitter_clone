@@ -35,10 +35,12 @@ npm i - refresh local after sync
 CTRL + SHIFT + P => Restart TS Server - troubleshoot ts types
 
 npx prisma studio - look at DB tables, add records
+planetscale db
 
-installed dayjs to format datetime fromNow
+installed dayjs to format datetime fromNow https://day.js.org/docs/en/plugin/relative-time
+loading spinner https://flowbite.com/docs/components/spinner/
 zod for data/form validation
-installed upstash for rate limiting. npm install @upstash/ratelimit
+installed upstash for rate limiting. npm install @upstash/ratelimit https://github.com/upstash/ratelimit
 install react-hot-toast for error toasts
 
 consider https://react-hook-form.com/ for client-side input validation (helps prevent re-rendering on every key press)
@@ -47,6 +49,6 @@ Routing using folder structure with [id] and [slug] as a parameter to get profil
 
 No type definitions, type is inferred from the validators (e.g. post.ts).
 
-Use SSGHelpers for profile page. Pre-hydrate some data ahead of time. https://trpc.io/docs/client/nextjs/server-side-helpers
+Use SSGHelpers for profile page. Pre-hydrate some data ahead of time. https://trpc.io/docs/client/nextjs/ssg
 
-1:55:25
+2:38:55
